@@ -417,13 +417,14 @@ function checkout() {
     if (!form || !form.reportValidity()) {
         return;
     }
-
+    const name = document.getElementById("checkout-name").value.trim();
     const address = document.getElementById("checkout-address").value.trim();
     const phone = document.getElementById("checkout-phone").value.trim();
     const email = document.getElementById("checkout-email").value.trim();
 
     alert(
         "Your order is ready for checkout!\n\n" +
+        "Name: " + name + "\n" +
         "Shipping Address: " + address + "\n" +
         "Phone Number: " + phone + "\n" +
         "Email: " + email);
