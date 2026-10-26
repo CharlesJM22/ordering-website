@@ -371,7 +371,7 @@ function closeServiceModal() {
     document.querySelector('[aria-controls="service-modal"]').focus();
 }
 
-const SUPPORT_EMAIL = 'garciajeremy3012@gmail.com';
+const SUPPORT_EMAIL = 'charlesmagtoto8@gmail.com';
 
 function sendSupportEmail(event) {
     event.preventDefault();
@@ -379,7 +379,7 @@ function sendSupportEmail(event) {
     const form = event.currentTarget;
     const customerEmail = form.querySelector('#customer-email').value.trim();
     const problem = form.querySelector('#customer-problem').value.trim();
-    const submitButton = form.querySelector('button[type="submit"]');
+    const  submitButton = form.querySelector('button[type="submit"]');
     const status = form.querySelector('.support-form-note');
 
     if (!customerEmail || !problem) {
@@ -395,7 +395,7 @@ function sendSupportEmail(event) {
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
 
-    window.location.href = mailtoLink;
+    window.location.href = 'https://mail.google.com/';
 
     if (submitButton) {
         submitButton.textContent = 'Email App Opened ✓';
