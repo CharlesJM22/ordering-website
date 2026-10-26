@@ -371,42 +371,6 @@ function closeServiceModal() {
     document.querySelector('[aria-controls="service-modal"]').focus();
 }
 
-const SUPPORT_EMAIL = 'charlesmagtoto8@gmail.com';
-
-function sendSupportEmail(event) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const customerEmail = form.querySelector('#customer-email').value.trim();
-    const problem = form.querySelector('#customer-problem').value.trim();
-    const  submitButton = form.querySelector('button[type="submit"]');
-    const status = form.querySelector('.support-form-note');
-
-    if (!customerEmail || !problem) {
-        if (status) {
-            status.textContent = 'Please enter your email and describe your problem.';
-        }
-        return;
-    }
-
-    const subject = 'Customer Support Request';
-    const body = 'Customer Email: ' + customerEmail + '\n\nProblem:\n' + problem;
-    const mailtoLink = 'mailto:' + SUPPORT_EMAIL +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
-
-    window.location.href = 'https://mail.google.com/';
-
-    if (submitButton) {
-        submitButton.textContent = 'Email App Opened ✓';
-        submitButton.classList.add('support-form-delivered');
-    }
-
-    if (status) {
-        status.textContent = 'Your email app should open with the message sent to our support email.';
-    }
-}
-
 function checkout() {
     if (cart.length === 0) {
         alert("Your cart is empty.");
