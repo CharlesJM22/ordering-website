@@ -29,18 +29,7 @@ app.post('/save-customer', (req, res) => {
         INSERT INTO info (name, address, phone)
         VALUES (?, ?, ?)
     `;
-
-    db.query(sql, [name, address, phone], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({
-                message: 'Failed to save customer.'
-            });
-        }
-
-        res.json({ message: 'Customer saved successfully!' });
     });
-});
 
 app.listen(3000, () => {
     console.log('Server running at http://localhost:3000');
