@@ -191,6 +191,7 @@ function formatPrice(price) {
     });
 }
 
+
 function displayProducts() {
     const search = document.getElementById("search")
         .value.toLowerCase().trim();
@@ -253,7 +254,7 @@ function filterCategory(category, button) {
 }
 
 function saveCart() {
-    localStorage.setItem("shopEaseCart", JSON.stringify(cart));
+    localStorage.setItem("VPRCart", JSON.stringify(cart));
     updateCartCount();
 
     const cartModal = document.getElementById("cart-modal");
@@ -371,6 +372,11 @@ function closeServiceModal() {
     document.querySelector('[aria-controls="service-modal"]').focus();
 }
 
+function closeCheckoutSuccess() {
+    document.getElementById("checkout-success-modal").hidden = true;
+    closeCart();
+}
+
 function checkout() {
     if (cart.length === 0) {
         alert("Your cart is empty.");
@@ -381,17 +387,34 @@ function checkout() {
     if (!form || !form.reportValidity()) {
         return;
     }
-    const name = document.getElementById("checkout-name").value.trim();
-    const address = document.getElementById("checkout-address").value.trim();
-    const phone = document.getElementById("checkout-phone").value.trim();
-    const email = document.getElementById("checkout-email").value.trim();
 
-    alert(
-        "Your order is ready for checkout!\n\n" +
-        "Name: " + name + "\n" +
-        "Shipping Address: " + address + "\n" +
-        "Phone Number: " + phone + "\n" +
-        "Email: " + email);
+    const name = document.getElementById("name").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    closeCart();
+    document.getElementById("checkout-success-modal").hidden = false;
+    document.getElementById("checkout-success-modal").querySelector(".success-card").focus();
+
+    fetch('/save-customer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            address: address,
+            phone: phone
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to save checkout details.');
+    });
 }
 
 displayProducts();
@@ -426,7 +449,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     });
 });
 
-const phoneInput = document.getElementById("checkout-phone");
+const phoneInput = document.getElementById("phone");
 
 if (phoneInput) {
     phoneInput.addEventListener("input", () => {

@@ -81,8 +81,7 @@
     <section class="service-section" id="contact">
         <div class="service-intro">
             <p class="subtitle">CUSTOMER SERVICE</p>
-            <h2>Need Help? Contact Us</h2>
-            <p>
+         <p>
                 Need help with a device or order?</p>
         </div>
 
@@ -93,7 +92,7 @@
                 aria-haspopup="dialog"
                 aria-controls="service-modal"
                 onclick="openServiceModal()">
-                Contact Us →
+                Read FAQ →
             </button>
         </div>
     </section>
@@ -120,7 +119,7 @@
                 onclick="closeServiceModal()">✕</button>
 
             <div class="service-intro">
-                <h2 id="service-modal-title">Help Center</h2>
+                <h2 id="service-modal-title">Frequently Ask Questions</h2>
             </div>
 
             <div class="faq-list" aria-label="Frequently asked customer support questions">
@@ -173,35 +172,6 @@
                         <p>You can check the status through your order confirmation or by contacting our support team with your order number.</p>
                     </div>
                 </div>
-
-                <div class="faq-item support-box">
-                    <h3>Still need help?</h3>
-                    <form class="support-form" onsubmit="sendSupportEmail(event)">
-                        <p>Tell us how to reach you and what problem you are experiencing.</p>
-                        <label for="customer-email">Your email address</label>
-                        <input
-                            id="customer-email"
-                            name="customerEmail"
-                            type="email"
-                            autocomplete="email"
-                            placeholder="you@gmail.com"
-                            required>
-
-                        <label for="customer-problem">Describe your problem</label>
-                        <textarea
-                            id="customer-problem"
-                            name="customerProblem"
-                            rows="5"
-                            maxlength="2000"
-                            placeholder="Please include the product name and any helpful order details."
-                            required></textarea>
-
-                        <button class="cart-btn" type="submit">
-                            Send Email →
-                        </button>
-                        <p class="support-form-note" aria-live="polite"></p>
-                    </form>
-                </div>
             </div>
 
         </div>
@@ -217,42 +187,48 @@
             <form id="checkout-form" class="checkout-form">
                 <label for="checkout-name">Fullname</label>
                 <input
-                    id="checkout-name"
+                    id="name"
                     name="name"
                     type="text"
                     placeholder="Charles Magtoto"
                     required>
 
-                <label for="checkout-address">Shipping Address</label>
+                <label for="address">Shipping Address</label>
                 <textarea
-                    id="checkout-address"
-                    name="shippingAddress"
+                    id="address"
+                    name="address"
                     rows="3"
                     placeholder="House number, street, barangay, city"
                     required></textarea>
 
                 <label for="checkout-phone">Phone Number</label>
                 <input
-                    id="checkout-phone"
-                    name="phoneNumber"
+                    id="phone"
+                    name="phone"
                     type="text"
                     inputmode="numeric"
                     pattern="[0-9]+"
                     placeholder="09XXXXXXXXX"
-                    required>
-
-                <label for="checkout-email">Email</label>
-                <input
-                    id="checkout-email"
-                    name="customerEmail"
-                    type="email"
-                    placeholder="you@gmail.com"
                     required>
             </form>
 
             <button class="primary-btn" onclick="checkout()">
                 Checkout
             </button>
+        </div>
+    </div>
+
+    <div id="checkout-success-modal" class="modal" hidden>
+        <div class="modal-content success-card" role="alertdialog" aria-live="assertive">
+            <button
+                class="close-btn success-close-btn"
+                type="button"
+                aria-label="Close checkout confirmation"
+                onclick="closeCheckoutSuccess()">✕</button>
+            <div class="success-icon">✓</div>
+            <p class="success-tag">Order confirmed</p>
+            <h2>Your order is ready for checkout!</h2>
+            <p class="success-detail">Your shipping details are in place and ready for the next step.</p>
         </div>
     </div>
 
